@@ -92,9 +92,9 @@ while (N > 0)
   int last_digit = N % 10;
   N /= 10;
 
-  // Need to cast Math.pow() into
-  // an int since pow returns a double
-  int place_value = (int) Math.pow(10, degree);
+  // note that pow always returns a double, so it needs
+  // to be stored in a double
+  double place_value = Math.pow(10, degree);
   System.out.println(last_digit * place_value);
   
   degree++;  // 1's place → 10's place; 10's place → 100's place, and so on
