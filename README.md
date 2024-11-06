@@ -23,7 +23,7 @@ After you compile the shape classes, you only need to compile and run `Main.java
 # Instructions  
 
 ## Problem 1
-Ask the user for two numbers. Print only the odd numbers between them. You should also print the two numbers if they are odd.
+Ask the user for two numbers. Print only the odd numbers between them. You should also print the two numbers if they are odd.  You may assume that the first number entered is less than the second number entered.
 
 Sample Run 1:
 ```
@@ -67,14 +67,6 @@ int b;
 System.out.println("Enter two numbers:");
 a = sc.nextInt();
 b = sc.nextInt();
-
-if (a > b)
-{
-  // Swaps a and b so that a <= b
-  int temp = a;
-  a = b;
-  b = temp;
-}
 
 while (a <= b)
 {
