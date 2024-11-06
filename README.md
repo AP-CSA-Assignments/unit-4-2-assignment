@@ -1,4 +1,4 @@
-# unit-4-1-assignment
+# unit-4-2-assignment
 
 ## Git Config
 ```
@@ -23,124 +23,88 @@ After you compile the shape classes, you only need to compile and run `Main.java
 # Instructions  
 
 ## Problem 1
-Write a program that requests that the user inputs any non-negative numbers, and if the user inputs the number -1, the program should print the sum of all numbers. Make sure -1 does not get added to the total sum.
+Ask the user for two numbers. Print only the odd numbers between them. You should also print the two numbers if they are odd.
 
-Sample run:
+Sample Run 1:
 ```
-Enter any numbers (Enter -1 to stop)
+Enter two numbers:
 2
-12
-3
-5
--1
-Sum is 22
+11
+
+3 5 7 9 11
+```
+Sample Run 2:
+```
+Enter two numbers:
+10
+44
+
+11 13 15 17 19 21 23 25 27 29 31 33 35 37 39 41 43
 ```
 
 ## Problem 2
-Write a program that asks the user how many numbers they wish to input.  The computer will then prompt for that many inputs,
-and find the maximum value from the numbers inputted.
+Write a program which takes a positive int input from the user, then prints the digits of that number in their places. You should separate the digits using spaces of line breaks so they appear individually.
 
-Hint: You need to initialize your maximum value to some value for your program to work.  You can either use an if-statement
-inside of your loop to check whether the user has entered a value; if it is the first value entered, you can set your max to this
-value; otherwise, you can check if the user has entered something larger than your max, and set it to the user-input instead.
+To start, first write a program that prints every digit of a number.
 
-Alternatively, you can merely set your maximum value to `Integer.MIN_VALUE`.
-
-Sample Run:
+Sample run:
 ```
-Enter the Scores:
-44
-22
-88
--1
-
-The largest score is 88
-```
-
-## Problem 3
-Write a program that requests the user to input a word, then prints out the first two letters - then skips a letter - then prints out the next two consecutive letters - then skips a letter - then this process repeats through the rest of the word.
-
-Hint #1 - You will need to use the substring method inside a loop in order to determine which letters of the String should be printed.
-
-Hint #2 - You can use the length method on the String to work out when this loop should end.
-
-Sample run #1:
-```
-Input a word:
-calculator
-cacuatr
-```
-Sample run #2:
-```
-Input a word:
-okay
-oky
+Enter a positive integer:
+> 2587
+7
+80
+500
+2000
 ```
 
 ## Sample Solutions
 ```java
 // Problem 1
 Scanner sc = new Scanner(System.in);
-int x = 0;
-int sum = 0;
+int a;
+int b;
 
-System.out.println("Enter any numbers greater than 0.  Enter -1 to stop");
-while (x != -1)
+System.out.println("Enter two numbers:");
+a = sc.nextInt();
+b = sc.nextInt();
+
+if (a > b)
 {
-  x = sc.nextInt();
-  sum += x;
+  // Swaps a and b so that a <= b
+  int temp = a;
+  a = b;
+  b = temp;
 }
 
-sum++; // To account for -1
-
-System.out.println("Sum is " + sum);
+while (a <= b)
+{
+  if (a % 2 == 1)
+  {
+    System.out.print(a + " ");
+  }
+  a++;
+}
 
 // Problem 2
 Scanner sc = new Scanner(System.in);
-int input;
-int max = Integer.MIN_VALUE; // Guarantees I always get the maximum value
-int count = 0;
-System.out.println("How many numbers do you wish to input?");
-count = sc.nextInt();
+int N;
+int degree = 0;
 
-System.out.println("Enter the scores:");
-int i = 0;
-while (i < count)
+System.out.print("Enter a positive integer:\n> ");
+N = sc.nextInt();
+
+while (N > 0)
 {
-  input = sc.nextInt();
-  if (input > max)
-  {
-    max = input;
-  }
-  i++;
-}
+  // These two lines are the
+  // "print every digit" algorithm
+  int last_digit = N % 10;
+  N /= 10;
 
-System.out.println("The largest score is " + max);
-
-// Problem 3
-Scanner sc = new Scanner(System.in);
-String str;
-
-System.out.println("Input a word:");
-str = sc.nextLine();
-
-int index = 0;
-while (index < str.length())
-{
-  // Printing two letters at a time
-  if (index < str.length()-1)
-  {
-    System.out.print(str.substring(index, index+2));
-  }
-
-  // If I am at the last letter,
-  // then only print that last letter
-  // instead of last two letters to avoid
-  // out of bounds error
-  if (index == str.length()-1)
-  {
-    System.out.print(str.substring(index));
-  }
-  index += 3; // Increment by 3 to skip every third letter
+  // Need to cast Math.pow() into
+  // an int since pow returns a double
+  int place_value = (int) Math.pow(10, degree);
+  System.out.println(last_digit * place_value);
+  
+  degree++;  // 1's place → 10's place; 10's place → 100's place, and so on
 }
 ```
